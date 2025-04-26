@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bncffj2tgcwdd"]
+
+[ext_resource type="PackedScene" uid="uid://bk0qn0uhnei10" path="res://Views/MoraJaiView.tscn" id="1_r150o"]
+
+[sub_resource type="Environment" id="Environment_c1w88"]
+background_mode = 1
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_c1w88")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="MoraJaiView" parent="." node_paths=PackedStringArray("MoraJaiButtons") instance=ExtResource("1_r150o")]
+MoraJaiButtons = []

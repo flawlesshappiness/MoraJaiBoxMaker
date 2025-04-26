@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk0qn0uhnei10"]
+
+[ext_resource type="Script" uid="uid://ns2urpij44kt" path="res://Views/MoraJaiView.cs" id="1_78t17"]
+[ext_resource type="PackedScene" uid="uid://kk447vroif0g" path="res://Controls/MoraJaiButton.tscn" id="2_h4ti7"]
+
+[node name="MoraJaiView" type="Control" node_paths=PackedStringArray("MoraJaiButtons")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_78t17")
+MoraJaiButtons = []
+
+[node name="MoraJai" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoraJai"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MoraJai/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MoraJai/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="MoraJaiButton 1" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+layout_mode = 2
+
+[node name="MoraJaiButton 2" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+layout_mode = 2
+
+[node name="MoraJaiButton 3" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+layout_mode = 2
+
+[node name="MoraJaiButton 4" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+layout_mode = 2
+
+[node name="MoraJaiButton 5" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+layout_mode = 2
+
+[node name="MoraJaiButton 6" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+layout_mode = 2
+
+[node name="MoraJaiButton 7" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+layout_mode = 2
+
+[node name="MoraJaiButton 8" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+layout_mode = 2
+
+[node name="MoraJaiButton 9" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+layout_mode = 2
