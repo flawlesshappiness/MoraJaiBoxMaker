@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk0qn0uhnei10"]
+[gd_scene load_steps=12 format=3 uid="uid://bk0qn0uhnei10"]
 
 [ext_resource type="Script" uid="uid://ns2urpij44kt" path="res://Views/MoraJaiView.cs" id="1_78t17"]
 [ext_resource type="PackedScene" uid="uid://kk447vroif0g" path="res://Controls/MoraJaiButton.tscn" id="2_h4ti7"]
+[ext_resource type="PackedScene" uid="uid://bryds80yi4pwr" path="res://Controls/CornerButton.tscn" id="2_m8qcs"]
+[ext_resource type="Theme" uid="uid://ytrsnvn0ilgs" path="res://Theme/MoraJai.tres" id="2_o1gen"]
+[ext_resource type="AudioStream" uid="uid://dcyk6tn6vpdiq" path="res://Sounds/debug_hover.wav" id="4_v4i61"]
+[ext_resource type="AudioStream" uid="uid://cgs1rwbt5w7fv" path="res://Sounds/debug_click.wav" id="5_o1gen"]
+[ext_resource type="AudioStream" uid="uid://byfblnealsytm" path="res://Sounds/sfx_solved_001.wav" id="7_kqtpn"]
+[ext_resource type="AudioStream" uid="uid://bu2olb4323dhe" path="res://Sounds/sfx_solved_002.wav" id="8_pmi4i"]
+[ext_resource type="AudioStream" uid="uid://cldwpre8vhony" path="res://Sounds/sfx_solved_003.wav" id="9_jc5v4"]
+[ext_resource type="AudioStream" uid="uid://c4w4834gpsoec" path="res://Sounds/sfx_solved_004.wav" id="10_s5j1l"]
 
-[node name="MoraJaiView" type="Control" node_paths=PackedStringArray("MoraJaiButtons")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jjmiw"]
+playback_mode = 2
+streams_count = 4
+stream_0/stream = ExtResource("7_kqtpn")
+stream_1/stream = ExtResource("8_pmi4i")
+stream_2/stream = ExtResource("9_jc5v4")
+stream_3/stream = ExtResource("10_s5j1l")
+
+[node name="MoraJaiView" type="Control" node_paths=PackedStringArray("SolvedLabel", "EditCheckBox", "DataTextEdit", "ExportButton", "LoadButton", "ClearButton", "PremadeLevelButtonTemplate", "SfxHover", "SfxClick", "SfxSolved", "MoraJaiButtons", "CornerButtons")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,56 +27,217 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_78t17")
-MoraJaiButtons = []
+SolvedLabel = NodePath("MarginContainer/Control/SolvedLabel")
+EditCheckBox = NodePath("MarginContainer/Control/EditCheckBox")
+DataTextEdit = NodePath("MarginContainer/Control/BottomButtons/HBoxContainer/DataTextEdit")
+ExportButton = NodePath("MarginContainer/Control/BottomButtons/HBoxContainer/ExportButton")
+LoadButton = NodePath("MarginContainer/Control/BottomButtons/HBoxContainer/LoadButton")
+ClearButton = NodePath("MarginContainer/Control/BottomButtons/HBoxContainer/ClearButton")
+PremadeLevelButtonTemplate = NodePath("MarginContainer/Control/PremadeLevels/PremadeLevelTemplate")
+SfxHover = NodePath("SfxHover")
+SfxClick = NodePath("SfxClick")
+SfxSolved = NodePath("SfxSolved")
+MoraJaiButtons = [NodePath("MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer/MoraJaiButton 1"), NodePath("MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer/MoraJaiButton 2"), NodePath("MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer/MoraJaiButton 3"), NodePath("MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer/MoraJaiButton 4"), NodePath("MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer/MoraJaiButton 5"), NodePath("MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer/MoraJaiButton 6"), NodePath("MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer/MoraJaiButton 7"), NodePath("MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer/MoraJaiButton 8"), NodePath("MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer/MoraJaiButton 9")]
+CornerButtons = [NodePath("MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/Corners/NW"), NodePath("MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/Corners/NE"), NodePath("MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/Corners/SE"), NodePath("MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/Corners/SW")]
 
-[node name="MoraJai" type="Control" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoraJai"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MoraJai/VBoxContainer"]
+[node name="Control" type="Control" parent="MarginContainer"]
 layout_mode = 2
-alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="MoraJai/VBoxContainer/HBoxContainer"]
+[node name="MoraJai" type="Control" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_o1gen")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Control/MoraJai"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control/MoraJai/CenterContainer"]
+layout_mode = 2
+
+[node name="Corners" type="Control" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="NW" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/Corners" instance=ExtResource("2_m8qcs")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.0
+offset_top = -214.0
+offset_right = -164.0
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NE" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/Corners" instance=ExtResource("2_m8qcs")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 166.0
+offset_top = -214.0
+offset_right = 216.0
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SE" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/Corners" instance=ExtResource("2_m8qcs")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 166.0
+offset_top = 166.0
+offset_right = 216.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SW" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/Corners" instance=ExtResource("2_m8qcs")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.0
+offset_top = 166.0
+offset_right = -164.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer"]
 layout_mode = 2
 columns = 3
 
-[node name="MoraJaiButton 1" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+[node name="MoraJaiButton 1" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer" instance=ExtResource("2_h4ti7")]
 layout_mode = 2
 
-[node name="MoraJaiButton 2" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+[node name="MoraJaiButton 2" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer" instance=ExtResource("2_h4ti7")]
 layout_mode = 2
 
-[node name="MoraJaiButton 3" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+[node name="MoraJaiButton 3" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer" instance=ExtResource("2_h4ti7")]
 layout_mode = 2
 
-[node name="MoraJaiButton 4" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+[node name="MoraJaiButton 4" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer" instance=ExtResource("2_h4ti7")]
 layout_mode = 2
 
-[node name="MoraJaiButton 5" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+[node name="MoraJaiButton 5" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer" instance=ExtResource("2_h4ti7")]
 layout_mode = 2
 
-[node name="MoraJaiButton 6" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+[node name="MoraJaiButton 6" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer" instance=ExtResource("2_h4ti7")]
 layout_mode = 2
 
-[node name="MoraJaiButton 7" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+[node name="MoraJaiButton 7" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer" instance=ExtResource("2_h4ti7")]
 layout_mode = 2
 
-[node name="MoraJaiButton 8" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+[node name="MoraJaiButton 8" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer" instance=ExtResource("2_h4ti7")]
 layout_mode = 2
 
-[node name="MoraJaiButton 9" parent="MoraJai/VBoxContainer/HBoxContainer/GridContainer" instance=ExtResource("2_h4ti7")]
+[node name="MoraJaiButton 9" parent="MarginContainer/Control/MoraJai/CenterContainer/MarginContainer/GridContainer" instance=ExtResource("2_h4ti7")]
 layout_mode = 2
+
+[node name="SolvedLabel" type="Label" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -61.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 1, 0.0166667, 1)
+text = "SOLVED"
+
+[node name="EditCheckBox" type="CheckBox" parent="MarginContainer/Control"]
+layout_mode = 0
+offset_right = 58.0
+offset_bottom = 31.0
+text = "Edit"
+
+[node name="BottomButtons" type="VBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control/BottomButtons"]
+layout_mode = 2
+alignment = 1
+
+[node name="ExportButton" type="Button" parent="MarginContainer/Control/BottomButtons/HBoxContainer"]
+layout_mode = 2
+text = "Export"
+
+[node name="DataTextEdit" type="TextEdit" parent="MarginContainer/Control/BottomButtons/HBoxContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+placeholder_text = "xxxxxx-xxxxxx-xxxxxx-xxxxxxxx"
+scroll_fit_content_height = true
+
+[node name="LoadButton" type="Button" parent="MarginContainer/Control/BottomButtons/HBoxContainer"]
+layout_mode = 2
+text = "Load"
+
+[node name="ClearButton" type="Button" parent="MarginContainer/Control/BottomButtons/HBoxContainer"]
+layout_mode = 2
+text = "Clear"
+
+[node name="PremadeLevels" type="VBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+alignment = 1
+
+[node name="PremadeLevelTemplate" type="Button" parent="MarginContainer/Control/PremadeLevels"]
+layout_mode = 2
+text = "Level 1"
+
+[node name="SfxHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_v4i61")
+volume_db = -25.0
+max_polyphony = 10
+
+[node name="SfxClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_o1gen")
+volume_db = -5.0
+max_polyphony = 10
+
+[node name="SfxSolved" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_jjmiw")

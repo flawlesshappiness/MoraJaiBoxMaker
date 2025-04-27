@@ -12,5 +12,4 @@ environment = SubResource("Environment_c1w88")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 
-[node name="MoraJaiView" parent="." node_paths=PackedStringArray("MoraJaiButtons") instance=ExtResource("1_r150o")]
-MoraJaiButtons = []
+[node name="MoraJaiView" parent="." instance=ExtResource("1_r150o")]
