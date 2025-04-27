@@ -49,7 +49,8 @@ public partial class MoraJaiView : Control
     private List<string> PremadeLevels = new()
     {
         "000000-000001-000000-01010101",
-        "000002-000602-000202-02020202"
+        "000002-000602-000202-02020202",
+        "040000-040904-020402-04040404"
     };
 
     public override void _Ready()
@@ -470,6 +471,7 @@ public partial class MoraJaiView : Control
         data += GetDataString(CornerButtons[3].ExpectedColor);
 
         DataTextEdit.Text = data;
+        DisplayServer.ClipboardSet(data);
 
         string GetDataString(int i)
         {
