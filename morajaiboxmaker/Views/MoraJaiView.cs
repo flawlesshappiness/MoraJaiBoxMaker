@@ -385,7 +385,15 @@ public partial class MoraJaiView : Control
     private void PressBlue(MoraJaiButton button)
     {
         var middle = GetButton(new Vector2I(1, 1));
-        PressMoraJaiButton(button, middle.CurrentColor);
+
+        if (middle.IsColor(MoraJaiColor.Blue))
+        {
+            // Do nothing
+        }
+        else
+        {
+            PressMoraJaiButton(button, middle.CurrentColor);
+        }
     }
 
     private void PressOrange(MoraJaiButton button)
